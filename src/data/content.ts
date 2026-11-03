@@ -1,377 +1,794 @@
-import type { IconName } from "@/components/Icon";
-import { SITE } from "@/config/site";
+import { img } from "../config/site";
 
-/* ============================================================
- * ROUTES & NAVIGATION
- * ============================================================ */
-export const PAGE_IDS = ["home", "about", "services", "products", "portfolio", "process", "contact"] as const;
-export type PageId = (typeof PAGE_IDS)[number];
+/* =============================================================
+   CONTENT — services, products, portfolio, process, advantages.
+   All copy is placeholder marketing content; edit freely.
+   ============================================================= */
 
-export const NAV_ITEMS: { id: PageId; label: string }[] = [
-  { id: "home", label: "Home" },
-  { id: "about", label: "About Us" },
-  { id: "services", label: "Our Services" },
-  { id: "products", label: "Products" },
-  { id: "portfolio", label: "Portfolio" },
-  { id: "process", label: "Process" },
-  { id: "contact", label: "Contact" },
+export type Spec = { label: string; value: string };
+
+export type Service = {
+  slug: string;
+  index: string;
+  title: string;
+  short: string;
+  description: string;
+  bullets: string[];
+  image: string;
+  specs: Spec[];
+  icon: string;
+};
+
+export const services: Service[] = [
+  {
+    slug: "plastic-bag-printing",
+    index: "01",
+    title: "Custom Plastic Bag Printing",
+    short: "HDPE, LDPE & PP bags printed with your logo, size and handle type.",
+    description:
+      "We print shopping bags, die-cut boutique bags, t-shirt bags (kresek) and roll bags on HDPE, LDPE, PP and biodegradable substrates. One to six colour spot printing with tight registration, available in glossy, matte or doff finish.",
+    bullets: [
+      "HDPE / LDPE / PP / oxo-biodegradable film",
+      "Die-cut, T-shirt, vest, flat & roll bag formats",
+      "Up to 6 colours, front & back or gusset printing",
+      "Micron thickness from 0.03 mm to 0.15 mm",
+    ],
+    image: img.shoppingSale,
+    icon: "bag",
+    specs: [
+      { label: "Material", value: "HDPE / LDPE / PP" },
+      { label: "Colours", value: "1 – 6 spot colours" },
+      { label: "MOQ", value: "5.000 pcs / design" },
+      { label: "Lead time", value: "7 – 14 working days" },
+    ],
+  },
+  {
+    slug: "packaging-printing",
+    index: "02",
+    title: "Plastic Packaging Printing",
+    short: "Pouches, sachets, vacuum bags and laminated film for retail shelves.",
+    description:
+      "Full packaging printing for stand-up pouches, three-side seal sachets, vacuum bags, zipper pouches and laminated rollstock. We match Pantone references and prepare your artwork for cylinder or screen production.",
+    bullets: [
+      "Stand-up pouch, zipper, three-side seal, vacuum bag",
+      "Laminated structures: PET/ALU/PE, NY/PE, OPP/CPP",
+      "Pantone colour matching with drawdown approval",
+      "Rollstock or finished-pouch delivery",
+    ],
+    image: img.zipperPouch,
+    icon: "pouch",
+    specs: [
+      { label: "Format", value: "Pouch / sachet / roll" },
+      { label: "Colours", value: "CMYK + 2 spot" },
+      { label: "MOQ", value: "3.000 pcs" },
+      { label: "Lead time", value: "10 – 21 working days" },
+    ],
+  },
+  {
+    slug: "food-beverage-printing",
+    index: "03",
+    title: "Food & Beverage Packaging Printing",
+    short: "Food-grade inks for coffee, snacks, frozen food and beverage brands.",
+    description:
+      "Low-odour, food-safe ink systems printed on the outer laminate layer for coffee pouches with degassing valves, snack and chips bags, frozen food vacuum packs, cup sealing film and sauce sachets — with BPOM-ready labelling support.",
+    bullets: [
+      "Food-grade, low-migration ink systems",
+      "Coffee pouches with valve & zipper",
+      "Cup sealing film / lidding printing",
+      "Nutrition, halal & BPOM label layout support",
+    ],
+    image: img.coffeeLine,
+    icon: "cup",
+    specs: [
+      { label: "Ink", value: "Food-grade, low odour" },
+      { label: "Colours", value: "CMYK + spot" },
+      { label: "MOQ", value: "2.000 pcs" },
+      { label: "Lead time", value: "10 – 18 working days" },
+    ],
+  },
+  {
+    slug: "logo-printing-on-plastic",
+    index: "04",
+    title: "Custom Logo Printing on Plastic",
+    short: "Screen printing directly on bottles, pails, jerry cans and containers.",
+    description:
+      "Direct screen printing on rigid plastic: PET & HDPE bottles, cosmetic pumps, jerry cans, pails, buckets, crates and housings. Cylindrical and flat-bed printing with UV-cured and solvent inks that resist abrasion and moisture.",
+    bullets: [
+      "Round, oval & flat surface screen printing",
+      "PET, HDPE, PP, acrylic and PVC substrates",
+      "UV-cure ink for scratch & chemical resistance",
+      "Gold, silver and fluorescent ink options",
+    ],
+    image: img.pumpBottles,
+    icon: "bottle",
+    specs: [
+      { label: "Surface", value: "Round / flat / oval" },
+      { label: "Colours", value: "1 – 4 colours" },
+      { label: "MOQ", value: "500 pcs" },
+      { label: "Lead time", value: "5 – 12 working days" },
+    ],
+  },
+  {
+    slug: "brand-promotional-printing",
+    index: "05",
+    title: "Brand Identity & Promotional Printing",
+    short: "Event kits, goodie bags, hampers and POS materials in your brand colours.",
+    description:
+      "Complete promotional printing runs: branded goodie bags, hampers and parcel packaging, event merchandise, acrylic sign holders, corrugated plastic signage and retail POS display materials — colour-matched to your brand guideline.",
+    bullets: [
+      "Goodie bags, hampers, parcel & gift packaging",
+      "Acrylic, PVC sheet & corrugated plastic signage",
+      "Brand guideline colour matching (Pantone / RAL)",
+      "Bundled kits for events, launch and retail promo",
+    ],
+    image: img.bagsYellow,
+    icon: "spark",
+    specs: [
+      { label: "Items", value: "Bags, signage, POS" },
+      { label: "Colours", value: "Full colour + spot" },
+      { label: "MOQ", value: "300 pcs" },
+      { label: "Lead time", value: "5 – 10 working days" },
+    ],
+  },
+  {
+    slug: "custom-surface-printing",
+    index: "06",
+    title: "Custom Design Printing on Plastic Surfaces",
+    short: "Any printable plastic surface — from thin film to rigid sheet.",
+    description:
+      "Bring your own material or buy it from us. We print custom graphics on plastic sheets, tubes, folders, ID cards, blister trays, dashboard panels, machine covers and injection-moulded parts, with pre-treatment (corona / flame) for durable adhesion.",
+    bullets: [
+      "Corona & flame pre-treatment for adhesion",
+      "Adhesion, scratch and tape-pull testing",
+      "Sheet size up to 70 × 100 cm",
+      "Prototypes and single-piece sampling available",
+    ],
+    image: img.squeegee,
+    icon: "layers",
+    specs: [
+      { label: "Max sheet", value: "70 × 100 cm" },
+      { label: "Colours", value: "1 – 8 colours" },
+      { label: "MOQ", value: "100 pcs (sample OK)" },
+      { label: "Lead time", value: "4 – 10 working days" },
+    ],
+  },
+  {
+    slug: "bulk-custom-orders",
+    index: "07",
+    title: "Bulk & Custom Order Printing",
+    short: "From trial runs to scheduled monthly production contracts.",
+    description:
+      "Flexible capacity planning for resellers, distributors and manufacturers: small trial runs to validate your design, then scheduled bulk production with consigned stock, staged delivery and locked pricing for the contract period.",
+    bullets: [
+      "Trial run 500 – 5.000 pcs before scaling",
+      "Monthly capacity up to 3.000.000 impressions",
+      "Staged delivery & consigned stock in our warehouse",
+      "Contract pricing locked for 6 – 12 months",
+    ],
+    image: img.warehouse,
+    icon: "stack",
+    specs: [
+      { label: "Capacity", value: "3.000.000 impr / month" },
+      { label: "Runs", value: "Trial → bulk" },
+      { label: "MOQ", value: "500 pcs" },
+      { label: "Delivery", value: "Staged / nationwide" },
+    ],
+  },
 ];
 
-export const pageHref = (id: PageId) => (id === "home" ? "#/" : `#/${id}`);
+/* ----------------------------- PRODUCTS ----------------------------- */
 
-/* ============================================================
- * SEO — per-page title & meta description
- * ============================================================ */
-export const PAGE_META: Record<PageId, { title: string; description: string }> = {
-  home: {
-    title: `${SITE.companyName} | Custom Plastic Screen & Packaging Printing`,
-    description:
-      "Professional custom plastic screen printing for bags, food packaging, pouches and promotional products. Sharp prints, flexible quantities and reliable delivery.",
-  },
-  about: {
-    title: `About Us | ${SITE.companyName}`,
-    description:
-      "Learn about our plastic screen printing expertise, vision, mission, quality control and commitment to customer satisfaction.",
-  },
-  services: {
-    title: `Our Services | ${SITE.companyName}`,
-    description:
-      "Custom plastic bag printing, packaging printing, food & beverage packaging, logo printing on plastic, promotional printing and bulk orders.",
-  },
-  products: {
-    title: `Product Catalog | ${SITE.companyName}`,
-    description:
-      "Browse printed plastic bags, shopping bags, food packaging, plastic pouches, branded packaging and promotional plastic products.",
-  },
-  portfolio: {
-    title: `Portfolio | ${SITE.companyName}`,
-    description:
-      "Explore examples of custom plastic printing projects including shopping bags, food packaging, pouches and branded promotional items.",
-  },
-  process: {
-    title: `Production Process | ${SITE.companyName}`,
-    description:
-      "From consultation and design preparation to printing, quality inspection and delivery — see how we produce your custom plastic prints.",
-  },
-  contact: {
-    title: `Contact Us | ${SITE.companyName}`,
-    description:
-      "Request a quote or ask a question via WhatsApp, phone, email or our contact form. We reply quickly to custom printing inquiries.",
-  },
-};
-
-/* ============================================================
- * IMAGERY
- * Stock photography (Pexels) and generated product mockups.
- * ============================================================ */
-const pexels = (id: string, w = 1200, h = 800) =>
-  `https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=${w}&h=${h}`;
-
-export const IMG = {
-  heroBags: "/images/generated-hero-bags.jpg",
-  screenPrint: "/images/generated-screen-print.jpg",
-  pouchMockup: "/images/generated-pouch-mockup.jpg",
-  promo: "/images/generated-promo.jpg",
-  branded: "/images/generated-branded-packaging.jpg",
-  pressMachine: pexels("1440504"),
-  pressRoller: pexels("6620992"),
-  printSheets: pexels("9550363"),
-  inspection: pexels("35383622"),
-  delivery: pexels("6169055"),
-  conveyor: pexels("18631424"),
-  sealing: pexels("4820844"),
-  coffee: pexels("4829083"),
-  shoppingBags: pexels("5926245"),
-  apples: pexels("14106347"),
-  sugar: pexels("21582446"),
-  consultation: pexels("8112162"),
-  kraftBag: pexels("29914081"),
-  printingParts: pexels("19837529"),
-};
-
-/* ============================================================
- * PRODUCTS (catalog)
- * ============================================================ */
-export interface Product {
+export type Product = {
   id: string;
   name: string;
   category: string;
+  blurb: string;
   image: string;
-  summary: string;
-  description: string;
-  applications: string[];
-}
+  specs: Spec[];
+  badge?: string;
+};
 
-export const PRODUCT_FILTERS = ["All", "Bags", "Food & Beverage", "Packaging", "Promotional", "Custom Applications"];
+export const productCategories = [
+  "All Products",
+  "Printed Bags",
+  "Pouches & Packaging",
+  "Food & Beverage",
+  "Bottles & Containers",
+  "Promotional",
+] as const;
 
-export const PRODUCTS: Product[] = [
+export const products: Product[] = [
   {
-    id: "printed-plastic-bags",
-    name: "Printed Plastic Bags",
-    category: "Bags",
-    image: IMG.heroBags,
-    summary: "Durable plastic carrier bags printed with your logo, colours and messaging.",
-    description:
-      "Strong, lightweight plastic bags printed with your logo, colours and brand messaging. A practical everyday carrier that keeps your brand visible at every checkout.",
-    applications: ["Retail stores & minimarkets", "Bakeries & restaurants", "Fashion & lifestyle boutiques", "Event and bazaar giveaways"],
+    id: "hdpe-shopping-bag",
+    name: "Printed HDPE Shopping Bag",
+    category: "Printed Bags",
+    blurb:
+      "The everyday retail workhorse — strong HDPE film with die-cut handle and up to 4 colours of your logo and store information.",
+    image: img.shoppingSale,
+    badge: "Best seller",
+    specs: [
+      { label: "Material", value: "HDPE 0.05 mm" },
+      { label: "Size", value: "25 × 40 to 40 × 60 cm" },
+      { label: "Print", value: "1 – 4 colours" },
+      { label: "MOQ", value: "5.000 pcs" },
+    ],
   },
   {
-    id: "shopping-bags",
-    name: "Shopping Bags",
-    category: "Bags",
-    image: IMG.shoppingBags,
-    summary: "Eye-catching shopping bags with handles that turn every purchase into a brand moment.",
-    description:
-      "Shopping bags with strong handles and bold, full-colour graphics. Designed to make customers proud to carry your brand out of the store.",
-    applications: ["Clothing & fashion retail", "Cosmetics & beauty stores", "Gift shops & department stores", "Promotional campaigns"],
+    id: "boutique-die-cut-bag",
+    name: "Die-Cut Boutique Bag",
+    category: "Printed Bags",
+    blurb:
+      "Softer LDPE with a premium matte or glossy finish, patched handle and full-face branding for fashion and beauty retailers.",
+    image: img.tissueBags,
+    specs: [
+      { label: "Material", value: "LDPE 0.08 mm" },
+      { label: "Finish", value: "Matte / glossy / doff" },
+      { label: "Print", value: "2 – 6 colours" },
+      { label: "MOQ", value: "3.000 pcs" },
+    ],
   },
   {
-    id: "food-packaging",
-    name: "Food Packaging",
+    id: "tshirt-kresek-bag",
+    name: "T-Shirt Bag (Kresek)",
+    category: "Printed Bags",
+    blurb:
+      "Vest-handle bags for minimarkets, grocery stores and food stalls, available in high-density or recycled resin.",
+    image: img.polyBag,
+    specs: [
+      { label: "Material", value: "HDPE / recycled" },
+      { label: "Size", value: "Small – jumbo" },
+      { label: "Print", value: "1 – 2 colours" },
+      { label: "MOQ", value: "10.000 pcs" },
+    ],
+  },
+  {
+    id: "zipper-stand-up-pouch",
+    name: "Zipper Stand-Up Pouch",
+    category: "Pouches & Packaging",
+    blurb:
+      "Resealable pouch with bottom gusset, ideal for snacks, powder, pet food and dried goods on retail shelves.",
+    image: img.zipperPouch,
+    badge: "Popular",
+    specs: [
+      { label: "Structure", value: "PET / PE laminate" },
+      { label: "Feature", value: "Zipper + gusset" },
+      { label: "Print", value: "CMYK + spot" },
+      { label: "MOQ", value: "3.000 pcs" },
+    ],
+  },
+  {
+    id: "kraft-window-sachet",
+    name: "Sachet & Small Pouch",
+    category: "Pouches & Packaging",
+    blurb:
+      "Three-side seal sachets for sample sizes, single-serve portions, spice blends and refill packs.",
+    image: img.kraftSachet,
+    specs: [
+      { label: "Seal", value: "3-side / back seal" },
+      { label: "Volume", value: "5 – 250 ml" },
+      { label: "Print", value: "1 – 6 colours" },
+      { label: "MOQ", value: "10.000 pcs" },
+    ],
+  },
+  {
+    id: "resealable-green-pouch",
+    name: "Resealable Printed Pouch",
+    category: "Pouches & Packaging",
+    blurb:
+      "Full-colour laminated pouch with tear notch and resealable zipper — the standard for premium dry goods branding.",
+    image: img.greenPouch,
+    specs: [
+      { label: "Structure", value: "OPP / CPP matte" },
+      { label: "Feature", value: "Tear notch, zipper" },
+      { label: "Print", value: "Full colour" },
+      { label: "MOQ", value: "2.000 pcs" },
+    ],
+  },
+  {
+    id: "coffee-pouch-valve",
+    name: "Coffee Pouch with Valve",
     category: "Food & Beverage",
-    image: IMG.apples,
-    summary: "Printed plastic packaging for snacks, bakery, produce and dry goods.",
-    description:
-      "Clear, appetising printed packaging that carries your product information and brand identity. We print on the plastic materials commonly used for food applications.",
-    applications: ["Snacks & confectionery", "Bakery & bread bags", "Fresh produce & fruit", "Dry goods & grains"],
+    blurb:
+      "One-way degassing valve, aluminium barrier layer and food-grade inks for roasteries and coffee brands.",
+    image: img.snackBag,
+    badge: "Food grade",
+    specs: [
+      { label: "Structure", value: "PET / ALU / PE" },
+      { label: "Feature", value: "Degassing valve" },
+      { label: "Ink", value: "Food grade" },
+      { label: "MOQ", value: "2.000 pcs" },
+    ],
   },
   {
-    id: "plastic-pouches",
-    name: "Plastic Pouches",
-    category: "Packaging",
-    image: IMG.pouchMockup,
-    summary: "Stand-up and flat pouches with custom graphics for retail products.",
-    description:
-      "Pouches printed with full-colour graphics and matte or gloss finishes. A modern, shelf-ready format for coffee, snacks, spices, powders and more.",
-    applications: ["Coffee & tea", "Spices & seasonings", "Snacks & dried foods", "Cosmetics & personal care refills"],
+    id: "snack-chips-bag",
+    name: "Snack & Chips Packaging",
+    category: "Food & Beverage",
+    blurb:
+      "High-impact shelf graphics on metallised laminate with strong seal integrity for fried and extruded snacks.",
+    image: img.dumplingPack,
+    specs: [
+      { label: "Structure", value: "OPP / MET-PET / PE" },
+      { label: "Seal", value: "Back seal fin" },
+      { label: "Print", value: "CMYK + 2 spot" },
+      { label: "MOQ", value: "5.000 pcs" },
+    ],
   },
   {
-    id: "custom-branded-packaging",
-    name: "Custom Branded Packaging",
-    category: "Packaging",
-    image: IMG.branded,
-    summary: "Mailer bags, sleeves and packaging that carry your brand to the customer's door.",
-    description:
-      "Branded mailers, printed sleeves and packaging inserts that protect products and reinforce your identity from the warehouse to the customer's doorstep.",
-    applications: ["E-commerce mailer bags", "Printed product sleeves", "Subscription box packaging", "Branded packaging for SMEs"],
+    id: "frozen-vacuum-bag",
+    name: "Frozen Food Vacuum Bag",
+    category: "Food & Beverage",
+    blurb:
+      "Puncture-resistant nylon vacuum bags printed with brand and product information for frozen and chilled lines.",
+    image: img.streetFoodBags,
+    specs: [
+      { label: "Structure", value: "NY / PE 90 micron" },
+      { label: "Feature", value: "Vacuum safe, −20 °C" },
+      { label: "Print", value: "1 – 4 colours" },
+      { label: "MOQ", value: "5.000 pcs" },
+    ],
   },
   {
-    id: "promotional-plastic-products",
-    name: "Promotional Plastic Products",
+    id: "cup-sealing-film",
+    name: "Cup Sealing Film (Lidding)",
+    category: "Food & Beverage",
+    blurb:
+      "Printed roll lidding for beverage cups — full-colour branding that stays legible after sealing and chilling.",
+    image: img.bagLine,
+    specs: [
+      { label: "Format", value: "Roll, 90 – 95 mm" },
+      { label: "Print", value: "Full colour" },
+      { label: "Yield", value: "± 1.200 cups / roll" },
+      { label: "MOQ", value: "20 rolls" },
+    ],
+  },
+  {
+    id: "pet-bottle-print",
+    name: "Branded PET Bottles",
+    category: "Bottles & Containers",
+    blurb:
+      "Direct screen printing on round PET and HDPE bottles for beverages, sauces, cosmetics and household chemicals.",
+    image: img.bottlesMinimal,
+    specs: [
+      { label: "Volume", value: "60 ml – 1.000 ml" },
+      { label: "Print", value: "1 – 4 colours" },
+      { label: "Ink", value: "UV cure" },
+      { label: "MOQ", value: "1.000 pcs" },
+    ],
+  },
+  {
+    id: "cosmetic-pump-print",
+    name: "Cosmetic Pump & Tube Printing",
+    category: "Bottles & Containers",
+    blurb:
+      "Fine-detail logo printing on pump bottles, tubes and jars with soft-touch compatible ink systems.",
+    image: img.squeezeBottles,
+    specs: [
+      { label: "Surface", value: "Round / flat" },
+      { label: "Detail", value: "Line min. 0.3 mm" },
+      { label: "Print", value: "1 – 3 colours" },
+      { label: "MOQ", value: "500 pcs" },
+    ],
+  },
+  {
+    id: "jerrycan-pail-print",
+    name: "Jerry Can, Pail & Bucket Printing",
+    category: "Bottles & Containers",
+    blurb:
+      "Durable industrial marking on jerry cans, pails and buckets for oil, paint, chemicals and food ingredients.",
+    image: img.oilCans,
+    specs: [
+      { label: "Volume", value: "1 L – 25 L" },
+      { label: "Print", value: "1 – 2 colours" },
+      { label: "Ink", value: "Solvent / UV" },
+      { label: "MOQ", value: "500 pcs" },
+    ],
+  },
+  {
+    id: "goodie-bag-promo",
+    name: "Promotional Goodie Bag",
     category: "Promotional",
-    image: IMG.promo,
-    summary: "Branded tote bags, drinkware, keychains and plastic cards for events and giveaways.",
-    description:
-      "Practical promotional items printed with your logo: tote bags, drinkware, keychains, tags and plastic cards for events, corporate gifting and customer rewards.",
-    applications: ["Trade shows & exhibitions", "Corporate gifts & employee kits", "Loyalty & membership cards", "Store giveaways"],
+    blurb:
+      "Event and campaign bags in thick glossy film with rope or die-cut handles — a walking billboard for your brand.",
+    image: img.bagsFlatlay,
+    badge: "Event ready",
+    specs: [
+      { label: "Material", value: "LDPE 0.10 mm" },
+      { label: "Handle", value: "Rope / die-cut" },
+      { label: "Print", value: "2 – 6 colours" },
+      { label: "MOQ", value: "500 pcs" },
+    ],
   },
   {
-    id: "other-plastic-applications",
-    name: "Other Plastic Applications",
-    category: "Custom Applications",
-    image: IMG.screenPrint,
-    summary: "Screen-printed plastic sheets, signage, labels and custom surfaces.",
-    description:
-      "From point-of-sale graphics and labels to custom plastic sheets and industrial parts, we print on a wide range of plastic surfaces to match your specification.",
-    applications: ["Point-of-sale signage", "Labels & stickers on plastic", "Industrial & equipment panels", "Custom one-off surfaces"],
+    id: "hamper-parcel-pack",
+    name: "Hampers & Parcel Packaging",
+    category: "Promotional",
+    blurb:
+      "Seasonal gift packaging sets — printed bags, wraps and courier packs designed as one branded family.",
+    image: img.parcel,
+    specs: [
+      { label: "Set", value: "Bag + wrap + label" },
+      { label: "Finish", value: "Gloss / matte" },
+      { label: "Print", value: "Full colour" },
+      { label: "MOQ", value: "300 sets" },
+    ],
+  },
+  {
+    id: "acrylic-signage",
+    name: "Custom Plastic Signage & Display",
+    category: "Promotional",
+    blurb:
+      "Acrylic, PVC sheet and corrugated plastic signage for retail counters, exhibitions and wayfinding.",
+    image: img.shoppingRow,
+    specs: [
+      { label: "Material", value: "Acrylic / PVC / PP board" },
+      { label: "Size", value: "Up to 70 × 100 cm" },
+      { label: "Print", value: "1 – 8 colours" },
+      { label: "MOQ", value: "50 pcs" },
+    ],
   },
 ];
 
-/* ============================================================
- * SERVICES
- * ============================================================ */
-export interface Service {
+/* ----------------------------- PORTFOLIO ----------------------------- */
+
+export type Project = {
   id: string;
   title: string;
-  icon: IconName;
-  image: string;
-  summary: string;
-  features: string[];
-}
-
-export const SERVICES: Service[] = [
-  {
-    id: "plastic-bag-printing",
-    title: "Custom Plastic Bag Printing",
-    icon: "shopping",
-    image: IMG.pressRoller,
-    summary:
-      "Full-colour printing on carrier, shopping and retail bags. We handle artwork, colour matching and production so your bags look consistent from the first roll to the last.",
-    features: ["Full-colour and single-colour options", "Consistent colour matching across batches", "Sizes and handles to suit your product"],
-  },
-  {
-    id: "plastic-packaging-printing",
-    title: "Plastic Packaging Printing",
-    icon: "box",
-    image: IMG.conveyor,
-    summary:
-      "Printed plastic packaging for a wide range of products. We print on films, sheets and pouches with clear registration and sharp graphics for shelf-ready packaging.",
-    features: ["Films, sheets and pouch materials", "Sharp registration for fine details", "Matte or gloss finish options"],
-  },
-  {
-    id: "food-beverage-packaging",
-    title: "Food & Beverage Packaging Printing",
-    icon: "shield",
-    image: IMG.coffee,
-    summary:
-      "Packaging printing for food and beverage brands, with clear product information and an attractive finish. We work with you on material suitability for each application.",
-    features: ["Product labelling and information layout", "Designs for snacks, bakery and beverages", "Material advice for your application"],
-  },
-  {
-    id: "custom-logo-printing",
-    title: "Custom Logo Printing on Plastic",
-    icon: "star",
-    image: IMG.screenPrint,
-    summary:
-      "Crisp logo reproduction on plastic bags, containers, packaging and promotional items. Ideal for businesses that need their brand mark to stand out on every product.",
-    features: ["Logo optimisation for screen printing", "Solid and multi-colour logo prints", "Brand colour accuracy"],
-  },
-  {
-    id: "brand-promotional-printing",
-    title: "Brand Identity & Promotional Printing",
-    icon: "tag",
-    image: IMG.promo,
-    summary:
-      "Build a consistent brand presence with printed plastic promotional products, from giveaways to corporate gifts. We help you keep every touchpoint on-brand.",
-    features: ["Promotional product range", "Brand-consistent design application", "Small and large promotional runs"],
-  },
-  {
-    id: "custom-design-printing",
-    title: "Custom Design Printing on Various Plastics",
-    icon: "pen",
-    image: IMG.printSheets,
-    summary:
-      "Have a unique design? We print custom artwork on many types of plastic surfaces, including sheets, films, bags and promotional substrates, with a design check before production.",
-    features: ["Artwork preparation and proofing", "Multiple plastic substrates", "Pre-production design review"],
-  },
-  {
-    id: "bulk-custom-order-printing",
-    title: "Bulk & Custom Order Printing",
-    icon: "factory",
-    image: IMG.pressMachine,
-    summary:
-      "Large runs and custom order sizes handled with production discipline. Flexible order quantities mean you can start small or scale up as your business grows.",
-    features: ["Flexible order quantities", "Scheduled production for repeat orders", "Packing and delivery planning"],
-  },
-];
-
-/* ============================================================
- * PORTFOLIO
- * Showcase images are illustrative examples. Replace with your own
- * finished project photography and client-approved work.
- * ============================================================ */
-export interface PortfolioItem {
-  id: string;
-  title: string;
+  client: string;
   category: string;
+  year: string;
+  scope: string;
   image: string;
-}
+  tall?: boolean;
+};
 
-export const PORTFOLIO_FILTERS = ["All", "Shopping Bags", "Food & Beverage", "Packaging", "Promotional", "Screen Printing"];
+export const portfolioCategories = [
+  "All Projects",
+  "Food & Beverage",
+  "Retail",
+  "Packaging",
+  "Industrial",
+  "Promotional",
+] as const;
 
-export const PORTFOLIO: PortfolioItem[] = [
-  { id: "p1", title: "Mailer & Sleeve Packaging Set", category: "Packaging", image: IMG.branded },
-  { id: "p2", title: "Stand-up Pouch Collection", category: "Food & Beverage", image: IMG.pouchMockup },
-  { id: "p3", title: "Promotional Merchandise Kit", category: "Promotional", image: IMG.promo },
-  { id: "p4", title: "Screen Print Production", category: "Screen Printing", image: IMG.screenPrint },
-  { id: "p5", title: "Printed Shopping Bag Series", category: "Shopping Bags", image: IMG.heroBags },
-  { id: "p6", title: "Coffee Pack Branding", category: "Food & Beverage", image: IMG.coffee },
-  { id: "p7", title: "Retail Carry Bag Design", category: "Shopping Bags", image: IMG.shoppingBags },
-  { id: "p8", title: "Fresh Produce Packaging", category: "Food & Beverage", image: IMG.apples },
-  { id: "p9", title: "Dry Goods Packaging", category: "Packaging", image: IMG.sugar },
+export const projects: Project[] = [
+  {
+    id: "pr-01",
+    title: "Kopi Senja — Coffee Pouch Series",
+    client: "Specialty roastery, Bandung",
+    category: "Food & Beverage",
+    year: "2025",
+    scope: "Structure design · 4-colour laminate · zipper + valve pouch",
+    image: img.snackBag,
+    tall: true,
+  },
+  {
+    id: "pr-02",
+    title: "Retail Chain HDPE Bag Rollout",
+    client: "Minimarket group, Jabodetabek",
+    category: "Retail",
+    year: "2025",
+    scope: "3 sizes · 2 colours · 1.2 million pcs / year contract",
+    image: img.shoppingSale,
+  },
+  {
+    id: "pr-03",
+    title: "Skincare Bottle Screen Printing",
+    client: "Cosmetic brand, Jakarta",
+    category: "Industrial",
+    year: "2024",
+    scope: "Direct print on PET · UV ink · 3 SKUs",
+    image: img.bottlesMinimal,
+  },
+  {
+    id: "pr-04",
+    title: "Snack Brand Full Colour Pouch",
+    client: "UMKM food producer, Surabaya",
+    category: "Packaging",
+    year: "2025",
+    scope: "Artwork preparation · CMYK + Pantone matching",
+    image: img.dumplingPack,
+    tall: true,
+  },
+  {
+    id: "pr-05",
+    title: "Fashion Boutique Die-Cut Bags",
+    client: "Apparel retailer, Semarang",
+    category: "Retail",
+    year: "2024",
+    scope: "Matte LDPE · patched handle · foil-effect ink",
+    image: img.tissueBags,
+  },
+  {
+    id: "pr-06",
+    title: "Lubricant Jerry Can Marking",
+    client: "Oils & lubricants manufacturer",
+    category: "Industrial",
+    year: "2024",
+    scope: "Solvent ink · abrasion tested · 5 L & 20 L",
+    image: img.oilCans,
+  },
+  {
+    id: "pr-07",
+    title: "Street Food Packaging Set",
+    client: "F&B franchise, Yogyakarta",
+    category: "Food & Beverage",
+    year: "2025",
+    scope: "Transparent bag + printed sticker · 40 outlets",
+    image: img.streetFoodBags,
+  },
+  {
+    id: "pr-08",
+    title: "Corporate Hampers Programme",
+    client: "Banking client, Jakarta",
+    category: "Promotional",
+    year: "2024",
+    scope: "Bag, wrap & label family · 2.500 sets",
+    image: img.parcel,
+  },
+  {
+    id: "pr-09",
+    title: "Zipper Pouch Redesign",
+    client: "Pet food distributor",
+    category: "Packaging",
+    year: "2025",
+    scope: "Structure change · 5 SKU artwork adaptation",
+    image: img.zipperPouch,
+  },
+  {
+    id: "pr-10",
+    title: "Trade Show Signage Kit",
+    client: "Manufacturing exporter",
+    category: "Promotional",
+    year: "2024",
+    scope: "Corrugated plastic + acrylic counter display",
+    image: img.shoppingRow,
+  },
+  {
+    id: "pr-11",
+    title: "Cosmetic Pump Bottle Series",
+    client: "Personal care startup",
+    category: "Industrial",
+    year: "2025",
+    scope: "Fine-line logo print · soft-touch compatible",
+    image: img.pumpBottles,
+  },
+  {
+    id: "pr-12",
+    title: "Grocery Vest Bag Program",
+    client: "Wholesaler, Medan",
+    category: "Retail",
+    year: "2024",
+    scope: "Recycled resin · single colour · monthly delivery",
+    image: img.bagsFlatlay,
+  },
 ];
 
-/* ============================================================
- * PRODUCTION PROCESS
- * ============================================================ */
-export interface ProcessStep {
-  title: string;
-  icon: IconName;
-  description: string;
-}
+/* ----------------------------- PROCESS ----------------------------- */
 
-export const PROCESS_STEPS: ProcessStep[] = [
+export type Step = {
+  no: string;
+  title: string;
+  duration: string;
+  summary: string;
+  points: string[];
+  image?: string;
+};
+
+export const processSteps: Step[] = [
   {
+    no: "01",
     title: "Customer Consultation",
-    icon: "chat",
-    description:
-      "We learn about your goals, product, target market and budget, then recommend the most suitable printing method and material.",
+    duration: "Day 1",
+    summary:
+      "We start with your product, quantity and budget. A dedicated sales engineer maps the right material, ink and printing method, then issues a written quotation.",
+    points: [
+      "Product & usage discussion",
+      "Quantity, budget and target price",
+      "Method recommendation: screen, flexo or rotogravure",
+      "Written quotation within 1 × 24 hours",
+    ],
+    image: img.designer,
   },
   {
+    no: "02",
     title: "Design Preparation",
-    icon: "pen",
-    description:
-      "Our team prepares print-ready artwork, checks colour separations and sizing, and sends a digital proof for your approval.",
+    duration: "Day 1 – 3",
+    summary:
+      "Our in-house studio prepares production artwork: dieline creation, vector clean-up, colour separation, trapping and a printed drawdown for your approval.",
+    points: [
+      "Dieline & template creation",
+      "Vector clean-up and colour separation",
+      "Pantone matching and drawdown approval",
+      "Free digital proof, 2 revision rounds",
+    ],
+    image: img.designStudio,
   },
   {
+    no: "03",
     title: "Material Selection",
-    icon: "layers",
-    description:
-      "We help you choose the right plastic substrate based on thickness, finish, durability and how the product will be used.",
+    duration: "Day 2 – 4",
+    summary:
+      "Resin, micron thickness and laminate structure are selected and tested against your filling, sealing and shelf requirements before bulk material is booked.",
+    points: [
+      "HDPE / LDPE / PP / PET / NY selection",
+      "Micron thickness & tensile testing",
+      "Food-grade and halal compliance check",
+      "Material sample approval by client",
+    ],
+    image: img.plasticTexture,
   },
   {
+    no: "04",
     title: "Printing Process",
-    icon: "print",
-    description:
-      "Screens are prepared and inks are applied layer by layer with careful registration for sharp, vibrant and consistent results.",
+    duration: "Day 4 – 10",
+    summary:
+      "Screen preparation, ink mixing and press setup, then production runs with hourly colour checks. Registration is verified on first-piece approval before mass run.",
+    points: [
+      "Screen / cylinder preparation",
+      "First-piece approval with client sign-off",
+      "Hourly in-process colour & registration check",
+      "Curing and drying per ink system",
+    ],
+    image: img.pressMechanics,
   },
   {
+    no: "05",
     title: "Quality Inspection",
-    icon: "eye",
-    description:
-      "Each batch is checked for colour accuracy, print alignment, ink adhesion and dimensions before it moves to packing.",
+    duration: "Day 10 – 11",
+    summary:
+      "Every batch passes QC for colour deviation, adhesion (tape pull), seal strength, size tolerance and print defects. Rejected pieces never leave the floor.",
+    points: [
+      "Colour deviation measured against master",
+      "Tape-pull adhesion & scratch test",
+      "Seal strength and drop test",
+      "AQL sampling with written QC report",
+    ],
+    image: img.qcWorker,
   },
   {
+    no: "06",
     title: "Packaging & Delivery",
-    icon: "truck",
-    description:
-      "Finished products are carefully packed and dispatched on schedule, with reliable delivery to your location.",
+    duration: "Day 11 – 14",
+    summary:
+      "Finished goods are counted, bundled in protective inner packing, labelled per SKU and shipped — staged delivery or full consignment to your warehouse.",
+    points: [
+      "Counting, bundling & carton packing",
+      "SKU labelling and packing list",
+      "Jabodetabek own-fleet, inter-island cargo",
+      "Staged delivery schedules available",
+    ],
+    image: img.courier,
   },
 ];
 
-/* ============================================================
- * WHY CHOOSE US
- * ============================================================ */
-export interface Strength {
-  title: string;
-  icon: IconName;
-  description: string;
-}
+/* ----------------------------- ADVANTAGES ----------------------------- */
 
-export const STRENGTHS: Strength[] = [
+export const advantages: {
+  icon: string;
+  title: string;
+  text: string;
+  metric?: string;
+}[] = [
   {
+    icon: "quality",
     title: "High-Quality Printing",
-    icon: "star",
-    description: "Sharp detail, vibrant colour and durable ink that holds up to handling and daily use.",
+    text: "Sharp registration, dense ink coverage and consistent colour from the first piece to the last carton.",
+    metric: "ΔE ≤ 2.0 colour tolerance",
   },
   {
-    title: "Custom Designs",
     icon: "pen",
-    description: "Work from your artwork or let our team help refine your logo and layout for print.",
+    title: "Custom Designs",
+    text: "In-house design studio builds dielines, adapts your brand guideline and prepares press-ready artwork at no extra cost.",
   },
   {
+    icon: "price",
     title: "Competitive Pricing",
-    icon: "tag",
-    description: "Fair, transparent quotes that make professional printing affordable for growing businesses.",
+    text: "Direct-from-factory pricing with transparent cost breakdown per material, colour and quantity.",
   },
   {
+    icon: "flexible",
     title: "Flexible Order Quantities",
-    icon: "layers",
-    description: "Start with a small test run or scale to bulk production without compromising quality.",
+    text: "Start with a 500-piece trial run, then scale to bulk production without re-doing your artwork.",
+    metric: "MOQ from 500 pcs",
   },
   {
+    icon: "machine",
     title: "Professional Production",
-    icon: "factory",
-    description: "Organised workflow, clear timelines and inspection at every stage of production.",
+    text: "Semi-automatic screen lines, flexo presses and laminating units run by trained operators on daily shifts.",
+    metric: "3.000.000 impressions / month",
   },
   {
-    title: "Reliable Delivery",
     icon: "truck",
-    description: "Orders are packed carefully and dispatched on the agreed schedule.",
+    title: "Reliable Delivery",
+    text: "Committed lead times, real-time production updates and staged delivery to match your stock cycle.",
+    metric: "98.4% on-time delivery",
   },
   {
+    icon: "chat",
     title: "Friendly Customer Service",
-    icon: "headset",
-    description: "A responsive team that explains options clearly and keeps you updated throughout.",
+    text: "One dedicated contact person on WhatsApp — from quotation to after-sales, in Bahasa or English.",
+    metric: "Response < 15 minutes",
+  },
+];
+
+/* ----------------------------- NUMBERS ----------------------------- */
+
+export const stats: { value: number; suffix: string; label: string; note: string }[] = [
+  { value: 13, suffix: "+", label: "Years in plastic printing", note: "since 2012" },
+  { value: 850, suffix: "+", label: "Brands served nationwide", note: "UMKM to corporate" },
+  { value: 3, suffix: "M", label: "Impressions per month", note: "installed capacity" },
+  { value: 98, suffix: "%", label: "On-time delivery rate", note: "rolling 12 months" },
+];
+
+/* ----------------------------- CLIENTS / SEGMENTS ----------------------------- */
+
+export const segments = [
+  "Small Businesses (UMKM)",
+  "Medium Enterprises",
+  "Retailers & Minimarkets",
+  "Food & Beverage Brands",
+  "Manufacturers",
+  "Cosmetic & Personal Care",
+  "Corporate & Institutions",
+  "Distributors & Resellers",
+];
+
+/* ----------------------------- TESTIMONIALS (placeholders) ----------------------------- */
+/* EDIT: replace with real, approved client testimonials */
+
+export const testimonials = [
+  {
+    quote:
+      "We moved our whole pouch range here after two bad experiences elsewhere. Colour consistency finally matches our brand guideline, and the artwork team fixed our files without charging extra.",
+    name: "R. Prasetyo",
+    role: "Founder — Specialty Coffee Roastery",
+    place: "Bandung",
+  },
+  {
+    quote:
+      "Trial run of 500 bags first, then bulk. That flexibility is exactly what a small brand needs. Delivery was on schedule for eleven consecutive months.",
+    name: "D. Kusuma",
+    role: "Owner — Retail Boutique",
+    place: "Semarang",
+  },
+  {
+    quote:
+      "Screen printing on our HDPE bottles is clean and does not rub off during transport. The QC report they send with every batch makes our internal audit much easier.",
+    name: "S. Halim",
+    role: "Procurement Manager — Household Chemicals",
+    place: "Jakarta",
+  },
+];
+
+/* ----------------------------- FAQ ----------------------------- */
+
+export const faqs = [
+  {
+    q: "What is the minimum order quantity (MOQ)?",
+    a: "MOQ depends on the product: 500 pcs for rigid plastic screen printing (bottles, pails, acrylic), 5.000 pcs for printed plastic bags, and 2.000 – 3.000 pcs for laminated pouches. Trial runs below MOQ are possible for first-time clients — ask our sales team for availability.",
+  },
+  {
+    q: "Which file formats do you accept?",
+    a: "Vector files are best: AI, EPS, PDF or SVG with outlined fonts. We also accept high-resolution PSD, TIFF or PNG (min. 300 dpi at actual size). If you only have a logo image, our design studio can redraw it as production-ready artwork.",
+  },
+  {
+    q: "How long does production take?",
+    a: "Standard lead time is 5 – 14 working days after artwork and material approval, depending on quantity, colour count and substrate. Rush service is available for promotional deadlines — it is quoted case by case.",
+  },
+  {
+    q: "Can you print on material I supply?",
+    a: "Yes. We accept client-supplied plastic film, bottles, sheets and moulded parts. We will run an adhesion test first, because some treated or recycled surfaces need corona or flame pre-treatment before ink can bond properly.",
+  },
+  {
+    q: "Are the inks safe for food packaging?",
+    a: "For food and beverage products we use low-odour, food-grade ink systems printed on the outer laminate layer, so ink never contacts the product directly. We also support BPOM, halal and nutrition label layout requirements.",
+  },
+  {
+    q: "Do you ship outside Jakarta?",
+    a: "Yes. We deliver with our own fleet across Jabodetabek and use trusted cargo partners for Sumatra, Kalimantan, Sulawesi, Bali and Nusa Tenggara. Goods are bundled, cartoned and labelled per SKU with a packing list.",
+  },
+  {
+    q: "Can I get a sample before ordering in bulk?",
+    a: "Absolutely. We provide digital proofs free of charge, printed drawdowns for colour approval, and physical samples for a sampling fee that is credited back on your bulk order.",
   },
 ];
