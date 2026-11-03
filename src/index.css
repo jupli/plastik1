@@ -1,0 +1,319 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --color-navy-950: #071426;
+  --color-navy-900: #0b1f3a;
+  --color-navy-800: #132d52;
+  --color-navy-700: #1d3f6e;
+
+  --color-accent-500: #ff6a13;
+  --color-accent-600: #e85a0a;
+  --color-accent-400: #ff8a3d;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background: #ffffff;
+    color: var(--color-navy-900);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
+  }
+
+  ::selection {
+    background: var(--color-accent-500);
+    color: #ffffff;
+  }
+}
+
+/* Component classes live in the "components" layer so Tailwind utilities can override them. */
+@layer components {
+  /* ---------- Layout helpers ---------- */
+  .container-x {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.25rem;
+  }
+
+  @media (min-width: 768px) {
+    .container-x {
+      padding: 0 2rem;
+    }
+  }
+
+  .section {
+    padding: 4.5rem 0;
+  }
+
+  @media (min-width: 1024px) {
+    .section {
+      padding: 6.5rem 0;
+    }
+  }
+
+  .eyebrow {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--color-accent-500);
+  }
+
+  .grid-pattern {
+    background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+    background-size: 22px 22px;
+  }
+
+  /* ---------- Buttons ---------- */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: 9999px;
+    padding: 0.85rem 1.6rem;
+    font-size: 0.95rem;
+    font-weight: 700;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease, color 0.25s ease,
+      border-color 0.25s ease;
+  }
+
+  .btn:hover {
+    transform: translateY(-2px);
+  }
+
+  .btn:active {
+    transform: translateY(0);
+  }
+
+  .btn-sm {
+    padding: 0.6rem 1.1rem;
+    font-size: 0.875rem;
+  }
+
+  .btn-primary {
+    background: var(--color-accent-500);
+    color: #ffffff;
+    box-shadow: 0 12px 28px -10px rgba(255, 106, 19, 0.7);
+  }
+
+  .btn-primary:hover {
+    background: var(--color-accent-600);
+    box-shadow: 0 16px 34px -10px rgba(255, 106, 19, 0.85);
+  }
+
+  .btn-navy {
+    background: var(--color-navy-900);
+    color: #ffffff;
+  }
+
+  .btn-navy:hover {
+    background: var(--color-navy-700);
+  }
+
+  .btn-outline {
+    border: 1.5px solid rgba(255, 255, 255, 0.45);
+    color: #ffffff;
+    backdrop-filter: blur(6px);
+  }
+
+  .btn-outline:hover {
+    background: #ffffff;
+    color: var(--color-navy-900);
+  }
+
+  .btn-line {
+    border: 1.5px solid var(--color-navy-900);
+    color: var(--color-navy-900);
+  }
+
+  .btn-line:hover {
+    background: var(--color-navy-900);
+    color: #ffffff;
+  }
+
+  .btn-whatsapp {
+    background: #25d366;
+    color: #ffffff;
+    box-shadow: 0 12px 28px -10px rgba(37, 211, 102, 0.7);
+  }
+
+  .btn-whatsapp:hover {
+    background: #1ebe5a;
+  }
+
+  /* ---------- Cards & media ---------- */
+  .card {
+    border-radius: 1.25rem;
+    background: #ffffff;
+    border: 1px solid rgba(11, 31, 58, 0.08);
+    transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+  }
+
+  .card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 24px 50px -22px rgba(11, 31, 58, 0.35);
+    border-color: rgba(255, 106, 19, 0.35);
+  }
+
+  .zoom-wrap {
+    overflow: hidden;
+  }
+
+  .zoom-wrap img {
+    transition: transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+
+  .zoom-wrap:hover img {
+    transform: scale(1.06);
+  }
+
+  /* ---------- Form fields ---------- */
+  .field {
+    width: 100%;
+    border-radius: 0.75rem;
+    border: 1px solid #d5dce6;
+    background: #ffffff;
+    padding: 0.8rem 1rem;
+    font-size: 0.95rem;
+    color: var(--color-navy-900);
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .field::placeholder {
+    color: #94a3b8;
+  }
+
+  .field:focus {
+    border-color: var(--color-accent-500);
+    box-shadow: 0 0 0 4px rgba(255, 106, 19, 0.15);
+  }
+
+  .field-error {
+    border-color: #ef4444;
+  }
+
+  .field-error:focus {
+    box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.15);
+  }
+
+  /* ---------- Reveal & motion ---------- */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.8s cubic-bezier(0.2, 0.7, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+
+  .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  .animate-fade-up {
+    animation: fade-up 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
+
+  .hero-bg {
+    animation: ken-burns 20s ease-out both;
+  }
+
+  .animate-float {
+    animation: float-y 6s ease-in-out infinite;
+  }
+
+  .wa-pulse {
+    animation: wa-pulse 2.4s ease-out infinite;
+  }
+
+  .animate-lightbox {
+    animation: lightbox-in 0.35s ease both;
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes ken-burns {
+  from {
+    transform: scale(1.1);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes float-y {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes wa-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.55);
+  }
+  70% {
+    box-shadow: 0 0 0 16px rgba(37, 211, 102, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+  }
+}
+
+@keyframes lightbox-in {
+  from {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
